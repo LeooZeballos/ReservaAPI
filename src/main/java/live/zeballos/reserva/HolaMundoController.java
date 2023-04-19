@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 public class HolaMundoController {
-    HolaMundoService holaMundoService;
+    IHolaMundoService holaMundoService;
 
     @GetMapping(value = {"/esp", "/es"}, params = {"nombre"})
     public String hola(String nombre) {

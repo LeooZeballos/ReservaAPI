@@ -3,7 +3,7 @@ package live.zeballos.reserva;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HolaMundoService {
+public class HolaMundoService implements IHolaMundoService {
     public String hola(String nombre) {
         return "{\"nombre\": \"Hola " + nombre + "\"}";
     }
