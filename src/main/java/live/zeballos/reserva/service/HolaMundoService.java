@@ -1,4 +1,4 @@
-package live.zeballos.reserva;
+package live.zeballos.reserva.service;
 
 import org.springframework.stereotype.Service;
 
