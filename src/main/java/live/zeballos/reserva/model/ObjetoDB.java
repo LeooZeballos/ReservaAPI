@@ -9,7 +9,7 @@ import lombok.*;
 @MappedSuperclass
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-public class ObjetoDB {
+public abstract class ObjetoDB {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull

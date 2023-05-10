@@ -1,9 +1,9 @@
 {
     "id": 1234,
     "fechaYHoraReserva": "2023-11-04 3:00 PM GMT-3:00",
-    "duracionReserva": "30 minutos",
+    "duracion": 30,
     "comentario": "Servicio completo",
-    "fechaHoraCreacionReserva": "17:25",
+    "fechaHoraCreacion": "17:25",
     "cliente": {
         "id": 1234,
         "nombre": "Manuel",
