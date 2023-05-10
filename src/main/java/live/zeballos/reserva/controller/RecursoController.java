@@ -32,20 +32,9 @@ public class RecursoController {
         return ResponseEntity.ok(recursoService.create(recurso));
     }
 
-    @PutMapping
-    public ResponseEntity<Recurso> update(@RequestBody Recurso recurso) {
-        return ResponseEntity.ok(recursoService.update(recurso));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Recurso> update(@RequestBody Recurso recurso, @PathVariable Long id) {
         return ResponseEntity.ok(recursoService.update(id, recurso));
-    }
-
-    @DeleteMapping
-    public ResponseEntity<String> delete(@RequestBody Recurso recurso) {
-        recursoService.delete(recurso);
-        return ResponseEntity.ok("Se ha eliminado el recurso con id: " + recurso.getId());
     }
 
     @DeleteMapping("/{id}")

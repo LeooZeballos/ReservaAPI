@@ -1,7 +1,5 @@
 package live.zeballos.reserva.service;
 
-import live.zeballos.reserva.model.Recurso;
-
 import java.util.List;
 
 public interface IServicio<T> {
