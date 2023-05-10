@@ -30,24 +30,11 @@ public class RecursoService implements IRecursoService {
     }
 
     @Override
-    public Recurso update(Recurso recurso) {
-        Recurso recursoToUpdate = recursoRepository.findById(recurso.getId()).orElse(Recurso.builder().build());
-        recursoToUpdate.setNombre(recurso.getNombre());
-        recursoToUpdate.setDescripcion(recurso.getDescripcion());
-        return recursoRepository.saveAndFlush(recursoToUpdate);
-    }
-
-    @Override
     public Recurso update(Long id, Recurso recurso) {
         Recurso recursoToUpdate = recursoRepository.findById(id).orElse(Recurso.builder().build());
         recursoToUpdate.setNombre(recurso.getNombre());
         recursoToUpdate.setDescripcion(recurso.getDescripcion());
         return recursoRepository.saveAndFlush(recursoToUpdate);
-    }
-
-    @Override
-    public void delete(Recurso recurso) {
-        recursoRepository.delete(recurso);
     }
 
     @Override
