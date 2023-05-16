@@ -32,6 +32,7 @@ public class EspacioFisicoService implements IEspacioFisicoService {
 
     @Override
     public EspacioFisico update(Long id, EspacioFisico espacioFisico) {
+        espacioFisico.setId(id);
         return espacioFisicoRepository.saveAndFlush(espacioFisico);
     }
 
