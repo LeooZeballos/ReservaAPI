@@ -27,6 +27,21 @@ public class EspacioFisicoController {
         return espacioFisicoService.get(id);
     }
 
+    @GetMapping(params = {"nombre"})
+    public List<EspacioFisico> getByNombre(@RequestParam String nombre) {
+        return espacioFisicoService.getByNombre(nombre);
+    }
+
+    @GetMapping(params = {"capacidad"})
+    public List<EspacioFisico> getByNombre(@RequestParam int capacidad) {
+        return espacioFisicoService.getByCapacidad(capacidad);
+    }
+
+    @GetMapping(params = {"nombre", "capacidad"})
+    public List<EspacioFisico> getByNombre(@RequestParam String nombre, @RequestParam int capacidad) {
+        return espacioFisicoService.getByNombreAndCapacidad(nombre, capacidad);
+    }
+
     @PostMapping
     public ResponseEntity<EspacioFisico> create(@RequestBody EspacioFisico espacioFisico) {
         return ResponseEntity.ok(espacioFisicoService.create(espacioFisico));

@@ -21,6 +21,21 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     }
 
     @Override
+    public List<EspacioFisico> getByNombre(String nombre) {
+        return espacioFisicoRepository.findAllByNombreIgnoreCaseContains(nombre);
+    }
+
+    @Override
+    public List<EspacioFisico> getByCapacidad(int capacidad) {
+        return espacioFisicoRepository.findAllByCapacidad(capacidad);
+    }
+
+    @Override
+    public List<EspacioFisico> getByNombreAndCapacidad(String nombre, int capacidad) {
+        return espacioFisicoRepository.findAllByNombreIgnoreCaseContainsAndCapacidad(nombre, capacidad);
+    }
+
+    @Override
     public EspacioFisico get(Long id) {
         return espacioFisicoRepository.findById(id).orElse(null);
     }
@@ -40,4 +55,5 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     public void delete(Long id) {
         espacioFisicoRepository.deleteById(id);
     }
+
 }
