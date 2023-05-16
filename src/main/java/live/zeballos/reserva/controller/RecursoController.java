@@ -22,6 +22,11 @@ public class RecursoController {
         return recursoService.getAll();
     }
 
+    @GetMapping(params = {"nombre"})
+    public List<Recurso> getByNombre(@RequestParam String nombre) {
+        return recursoService.getByNombre(nombre);
+    }
+
     @GetMapping("/{id}")
     public Recurso get(@PathVariable Long id) {
         return recursoService.get(id);

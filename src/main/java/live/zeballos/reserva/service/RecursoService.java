@@ -24,6 +24,12 @@ public class RecursoService implements IRecursoService {
     public Recurso get(Long id) {
         return recursoRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public List<Recurso> getByNombre(String nombre) {
+        return recursoRepository.findAllByNombreIgnoreCaseContains(nombre);
+    }
+
     @Override
     public Recurso create(Recurso recurso) {
         return recursoRepository.saveAndFlush(recurso);
@@ -39,4 +45,5 @@ public class RecursoService implements IRecursoService {
     public void delete(Long id) {
         recursoRepository.deleteById(id);
     }
+
 }
