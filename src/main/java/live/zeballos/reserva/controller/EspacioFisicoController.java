@@ -2,6 +2,8 @@ package live.zeballos.reserva.controller;
 
 import live.zeballos.reserva.model.EspacioFisico;
 import live.zeballos.reserva.service.IEspacioFisicoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,11 @@ public class EspacioFisicoController {
     @GetMapping
     public List<EspacioFisico> get() {
         return espacioFisicoService.getAll();
+    }
+
+    @GetMapping(params = {"page"})
+    public Page<EspacioFisico> get(Pageable page) {
+        return espacioFisicoService.getAll(page);
     }
 
     @GetMapping("{id}")

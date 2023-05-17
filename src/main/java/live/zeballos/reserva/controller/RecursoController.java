@@ -2,6 +2,8 @@ package live.zeballos.reserva.controller;
 
 import live.zeballos.reserva.model.Recurso;
 import live.zeballos.reserva.service.IRecursoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,11 @@ public class RecursoController {
     @GetMapping
     public List<Recurso> get() {
         return recursoService.getAll();
+    }
+
+    @GetMapping(params = {"page"})
+    public Page<Recurso> get(Pageable page) {
+        return recursoService.getAll(page);
     }
 
     @GetMapping(params = {"nombre"})

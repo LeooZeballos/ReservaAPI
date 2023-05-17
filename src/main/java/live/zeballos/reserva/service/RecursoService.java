@@ -2,6 +2,8 @@ package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.Recurso;
 import live.zeballos.reserva.repository.RecursoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class RecursoService implements IRecursoService {
     @Override
     public List<Recurso> getAll() {
         return recursoRepository.findAll();
+    }
+
+    @Override
+    public Page<Recurso> getAll(Pageable page) {
+        return recursoRepository.findAll(page);
     }
 
     @Override

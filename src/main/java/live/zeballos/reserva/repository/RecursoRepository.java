@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface RecursoRepository extends JpaRepository<Recurso, Long> {
     List<Recurso> findAllByNombreIgnoreCaseContains(String nombre);
-
-
 }

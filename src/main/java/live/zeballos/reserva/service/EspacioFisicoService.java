@@ -2,6 +2,8 @@ package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.EspacioFisico;
 import live.zeballos.reserva.repository.EspacioFisicoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     @Override
     public List<EspacioFisico> getAll() {
         return espacioFisicoRepository.findAll();
+    }
+
+    @Override
+    public Page<EspacioFisico> getAll(Pageable page) {
+        return espacioFisicoRepository.findAll(page);
     }
 
     @Override
