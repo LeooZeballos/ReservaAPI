@@ -33,13 +33,13 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     }
 
     @Override
-    public List<EspacioFisico> getByCapacidad(int capacidad) {
-        return espacioFisicoRepository.findAllByCapacidad(capacidad);
+    public Page<EspacioFisico> getByCapacidad(Pageable page, int capacidad) {
+        return espacioFisicoRepository.findAllByCapacidad(page, capacidad);
     }
 
     @Override
-    public List<EspacioFisico> getByNombreAndCapacidad(String nombre, int capacidad) {
-        return espacioFisicoRepository.findAllByNombreIgnoreCaseContainsAndCapacidad(nombre, capacidad);
+    public Page<EspacioFisico> getByNombreAndCapacidad(Pageable page, String nombre, int capacidad) {
+        return espacioFisicoRepository.findAllByNombreIgnoreCaseContainsAndCapacidad(page, nombre, capacidad);
     }
 
     @Override
