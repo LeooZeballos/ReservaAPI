@@ -28,8 +28,8 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     }
 
     @Override
-    public List<EspacioFisico> getByNombre(String nombre) {
-        return espacioFisicoRepository.findAllByNombreIgnoreCaseContains(nombre);
+    public Page<EspacioFisico> getByNombre(Pageable page, String nombre) {
+        return espacioFisicoRepository.findAllByNombreIgnoreCaseContains(page, nombre);
     }
 
     @Override

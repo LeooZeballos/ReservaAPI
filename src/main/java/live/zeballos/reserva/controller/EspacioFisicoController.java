@@ -34,9 +34,9 @@ public class EspacioFisicoController {
         return espacioFisicoService.get(id);
     }
 
-    @GetMapping(params = {"nombre"})
-    public List<EspacioFisico> getByNombre(@RequestParam String nombre) {
-        return espacioFisicoService.getByNombre(nombre);
+    @GetMapping(params = {"page", "nombre"})
+    public Page<EspacioFisico> getByNombre(Pageable page, @RequestParam String nombre) {
+        return espacioFisicoService.getByNombre(page, nombre);
     }
 
     @GetMapping(params = {"capacidad"})
