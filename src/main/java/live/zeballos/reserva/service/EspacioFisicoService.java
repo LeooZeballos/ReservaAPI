@@ -1,6 +1,7 @@
 package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.EspacioFisico;
+import live.zeballos.reserva.query.EspacioFisicoQueryParams;
 import live.zeballos.reserva.repository.EspacioFisicoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,18 +29,12 @@ public class EspacioFisicoService implements IEspacioFisicoService {
     }
 
     @Override
-    public Page<EspacioFisico> getByNombre(Pageable page, String nombre) {
-        return espacioFisicoRepository.findAllByNombreIgnoreCaseContains(page, nombre);
-    }
-
-    @Override
-    public Page<EspacioFisico> getByCapacidad(Pageable page, int capacidad) {
-        return espacioFisicoRepository.findAllByCapacidad(page, capacidad);
-    }
-
-    @Override
-    public Page<EspacioFisico> getByNombreAndCapacidad(Pageable page, String nombre, int capacidad) {
-        return espacioFisicoRepository.findAllByNombreIgnoreCaseContainsAndCapacidad(page, nombre, capacidad);
+    public Page<EspacioFisico> getAll(Pageable page, String nombre, Integer capacidad) {
+        EspacioFisicoQueryParams queryParams = EspacioFisicoQueryParams.builder()
+                .withNombre(nombre)
+                .withCapacidad(capacidad)
+                .build();
+        return espacioFisicoRepository.findByParams(queryParams, page);
     }
 
     @Override

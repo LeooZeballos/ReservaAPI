@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/espacio-fisico")
 public class EspacioFisicoController {
@@ -20,33 +18,16 @@ public class EspacioFisicoController {
     }
 
     @GetMapping
-    public List<EspacioFisico> get() {
-        return espacioFisicoService.getAll();
-    }
-
-    @GetMapping(params = {"page"})
-    public Page<EspacioFisico> get(Pageable page) {
-        return espacioFisicoService.getAll(page);
+    public Page<EspacioFisico> getByNombre(
+            Pageable page,
+            @RequestParam(name = "nombre", required = false) String nombre,
+            @RequestParam(name = "capacidad", required = false) Integer capacidad) {
+        return espacioFisicoService.getAll(page, nombre, capacidad);
     }
 
     @GetMapping("{id}")
     public EspacioFisico get(@PathVariable Long id) {
         return espacioFisicoService.get(id);
-    }
-
-    @GetMapping(params = {"page", "nombre"})
-    public Page<EspacioFisico> getByNombre(Pageable page, @RequestParam String nombre) {
-        return espacioFisicoService.getByNombre(page, nombre);
-    }
-
-    @GetMapping(params = {"page", "capacidad"})
-    public Page<EspacioFisico> getByNombre(Pageable page, @RequestParam int capacidad) {
-        return espacioFisicoService.getByCapacidad(page, capacidad);
-    }
-
-    @GetMapping(params = {"page", "nombre", "capacidad"})
-    public Page<EspacioFisico> getByNombre(Pageable page, @RequestParam String nombre, @RequestParam int capacidad) {
-        return espacioFisicoService.getByNombreAndCapacidad(page, nombre, capacidad);
     }
 
     @PostMapping

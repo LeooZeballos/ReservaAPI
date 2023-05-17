@@ -5,7 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IEspacioFisicoService extends IService<EspacioFisico> {
-    Page<EspacioFisico> getByNombre(Pageable page, String nombre);
-    Page<EspacioFisico> getByCapacidad(Pageable page, int capacidad);
-    Page<EspacioFisico> getByNombreAndCapacidad(Pageable page, String nombre, int capacidad);
+    Page<EspacioFisico> getAll(Pageable page, String nombre, Integer capacidad);
 }
