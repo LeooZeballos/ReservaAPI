@@ -11,14 +11,19 @@ Aplicación de Reservas para la cátedra 'Desarrollo de Aplicaciones Web' de la 
 ## Endpoints de la API
 Por defecto, la aplicación corre en el puerto 8080. Para cambiarlo, modificar el archivo `application.properties`.
 Además, todos los endpoints comienzan con `/api`, seguido de la versión de la API, que por defecto es `v1`.
-### Recursos
-- GET `/api/v1/recursos`: Devuelve todos los recursos.
-  - `?nombre=String`: Filtra los recursos por nombre.
-  - `?descripcion=String`: Filtra los recursos por descripción.
-- GET `/api/v1/recursos/{id}`: Devuelve el recurso con el id especificado.
-- POST `/api/v1/recursos`: Crea un nuevo recurso.
-- PUT `/api/v1/recursos/{id}`: Actualiza el recurso con el id especificado.
-- DELETE `/api/v1/recursos/{id}`: Elimina el recurso con el id especificado.
+
+### Clientes
+- GET `/api/v1/clientes`: Devuelve todos los clientes.
+  - `?nombre=String`: Filtra los clientes por nombre.
+  - `?apellido=String`: Filtra los clientes por apellido.
+  - `?nroTelefono=String`: Filtra los clientes por su número de teléfono.
+  - `?email=String`: Filtra los clientes por su email.
+  - `?dni=Integer`: Filtra los clientes por su DNI.
+  - `?rolId=String`: Filtra los clientes por su rol. El rol puede ser un único id o un array de ids. Ejemplo: `1` o `1,2,3`.
+- GET `/api/v1/clientes/{id}`: Devuelve el cliente con el id especificado.
+- POST `/api/v1/clientes`: Crea un nuevo cliente.
+- PUT `/api/v1/clientes/{id}`: Actualiza el cliente con el id especificado.
+- DELETE `/api/v1/clientes/{id}`: Elimina el cliente con el id especificado.
 
 ### Espacios físicos
 - GET `/api/v1/espacios`: Devuelve todos los espacios físicos.
@@ -30,6 +35,15 @@ Además, todos los endpoints comienzan con `/api`, seguido de la versión de la 
 - POST `/api/v1/espacios`: Crea un nuevo espacio físico.
 - PUT `/api/v1/espacios/{id}`: Actualiza el espacio físico con el id especificado.
 - DELETE `/api/v1/espacios/{id}`: Elimina el espacio físico con el id especificado.
+
+### Recursos
+- GET `/api/v1/recursos`: Devuelve todos los recursos.
+  - `?nombre=String`: Filtra los recursos por nombre.
+  - `?descripcion=String`: Filtra los recursos por descripción.
+- GET `/api/v1/recursos/{id}`: Devuelve el recurso con el id especificado.
+- POST `/api/v1/recursos`: Crea un nuevo recurso.
+- PUT `/api/v1/recursos/{id}`: Actualiza el recurso con el id especificado.
+- DELETE `/api/v1/recursos/{id}`: Elimina el recurso con el id especificado.
 
 ### Estados
 - GET `/api/v1/estados`: Devuelve todos los estados.
