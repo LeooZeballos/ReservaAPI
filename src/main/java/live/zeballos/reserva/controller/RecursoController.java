@@ -21,8 +21,9 @@ public class RecursoController {
     @GetMapping
     public Page<Recurso> get(
             Pageable page,
-            @RequestParam(name = "nombre", required = false) String nombre) {
-        return recursoService.getAll(page, nombre);
+            @RequestParam(name = "nombre", required = false) String nombre,
+            @RequestParam(name = "descripcion", required = false) String descripcion) {
+        return recursoService.getAll(page, nombre, descripcion);
     }
 
     @GetMapping("/{id}")

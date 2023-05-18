@@ -34,10 +34,11 @@ public class RecursoService implements IRecursoService {
     }
 
     @Override
-    public Page<Recurso> getAll(Pageable page, String nombre) {
+    public Page<Recurso> getAll(Pageable page, String nombre, String descripcion) {
         return recursoRepository.findByParams(
                 RecursoQueryParams.builder()
                         .nombre(nombre)
+                        .descripcion(descripcion)
                         .build(),
                 page
         );

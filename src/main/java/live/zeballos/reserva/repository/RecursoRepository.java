@@ -20,6 +20,9 @@ public interface RecursoRepository extends JpaRepository<Recurso, Long>, JpaSpec
             if (queryParams.nombre() != null) {
                 predicates.add(builder.like(builder.lower(root.get("nombre")), "%" + queryParams.nombre().toLowerCase() + "%"));
             }
+            if (queryParams.descripcion() != null) {
+                predicates.add(builder.like(builder.lower(root.get("descripcion")), "%" + queryParams.descripcion().toLowerCase() + "%"));
+            }
             return builder.and(predicates.toArray(new Predicate[0]));
         }, pageable);
     }
