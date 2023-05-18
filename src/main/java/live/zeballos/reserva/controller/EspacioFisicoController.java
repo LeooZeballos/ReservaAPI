@@ -21,8 +21,10 @@ public class EspacioFisicoController {
     public Page<EspacioFisico> getByNombre(
             Pageable page,
             @RequestParam(name = "nombre", required = false) String nombre,
-            @RequestParam(name = "capacidad", required = false) Integer capacidad) {
-        return espacioFisicoService.getAll(page, nombre, capacidad);
+            @RequestParam(name = "capacidad", required = false) Integer capacidad,
+            @RequestParam(name = "descripcion", required = false) String descripcion,
+            @RequestParam(name = "habilitado", required = false) Boolean habilitado) {
+        return espacioFisicoService.getAll(page, nombre, capacidad, descripcion, habilitado);
     }
 
     @GetMapping("{id}")

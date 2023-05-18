@@ -23,6 +23,12 @@ public interface EspacioFisicoRepository extends JpaRepository<EspacioFisico, Lo
             if (queryParams.capacidad() != null) {
                 predicates.add(builder.equal(root.get("capacidad"), queryParams.capacidad()));
             }
+            if (queryParams.descripcion() != null) {
+                predicates.add(builder.like(builder.lower(root.get("descripcion")), "%" + queryParams.descripcion().toLowerCase() + "%"));
+            }
+            if (queryParams.habilitado() != null) {
+                predicates.add(builder.equal(root.get("habilitado"), queryParams.habilitado()));
+            }
             return builder.and(predicates.toArray(new Predicate[0]));
         }, pageable);
     }
