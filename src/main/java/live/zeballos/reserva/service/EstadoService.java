@@ -2,10 +2,10 @@ package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.Estado;
 import live.zeballos.reserva.query.EstadoQueryParams;
+import live.zeballos.reserva.repository.EstadoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import live.zeballos.reserva.repository.EstadoRepository;
 
 import java.util.List;
 

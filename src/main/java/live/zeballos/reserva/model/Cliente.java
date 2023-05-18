@@ -1,6 +1,8 @@
 package live.zeballos.reserva.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
@@ -28,4 +30,5 @@ public class Cliente extends ObjetoDB {
 
     @ManyToOne
     private Rol rol;
+
 }

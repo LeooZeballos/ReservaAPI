@@ -1,6 +1,7 @@
 package live.zeballos.reserva.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
