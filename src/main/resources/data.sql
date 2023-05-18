@@ -29,10 +29,10 @@ INSERT INTO ESTADO (NOMBRE, DESCRIPCION, COLOR) VALUES ('Completada', 'La reserv
 INSERT INTO ESTADO (NOMBRE, DESCRIPCION, COLOR) VALUES ('Bloqueada', 'La reserva fue bloqueada.', '800000');
 
 -- Rol
-INSERT INTO ROL (NOMBRE, DESCRIPCION, COLOR) VALUES ('Administrador', 'Administrador del sistema.', 'FFA500');
-INSERT INTO ROL (NOMBRE, DESCRIPCION, COLOR) VALUES ('Usuario', 'Usuario del sistema.', '008000');
-INSERT INTO ROL (NOMBRE, DESCRIPCION, COLOR) VALUES ('Cliente', '', 'FFD700');
-INSERT INTO ROL (NOMBRE, DESCRIPCION, COLOR) VALUES ('Docente', '', 'FF0000');
+INSERT INTO ROL (NOMBRE, DESCRIPCION) VALUES ('Administrador', 'Administrador del sistema.');
+INSERT INTO ROL (NOMBRE, DESCRIPCION) VALUES ('Usuario', 'Usuario del sistema.');
+INSERT INTO ROL (NOMBRE, DESCRIPCION) VALUES ('Cliente', '');
+INSERT INTO ROL (NOMBRE, DESCRIPCION) VALUES ('Docente', '');
 
 -- Clientes
 INSERT INTO CLIENTE (NOMBRE, APELLIDO, NRO_TELEFONO, EMAIL, DNI, ROL_ID) VALUES ('Leonel', 'Zeballos', '12345678', 'zeballosleonel3@gmail.com', '12345678', 1);

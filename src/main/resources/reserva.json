@@ -14,8 +14,7 @@
         "rol": {
             "id": 123,
             "nombre": "Docente",
-            "descripcion": "",
-            "color": "#0216f5"
+            "descripcion": ""
         }
     },
     "motivoReserva": "Quiere enseñar su clase en el espacio",
