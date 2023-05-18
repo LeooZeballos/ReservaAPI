@@ -19,19 +19,12 @@ public class RecursoController {
         this.recursoService = recursoService;
     }
 
+
     @GetMapping
-    public List<Recurso> get() {
-        return recursoService.getAll();
-    }
-
-    @GetMapping(params = {"page"})
-    public Page<Recurso> get(Pageable page) {
-        return recursoService.getAll(page);
-    }
-
-    @GetMapping(params = {"nombre"})
-    public List<Recurso> getByNombre(@RequestParam String nombre) {
-        return recursoService.getByNombre(nombre);
+    public Page<Recurso> get(
+            Pageable page,
+            @RequestParam(name = "nombre", required = false) String nombre) {
+        return recursoService.getAll(page, nombre);
     }
 
     @GetMapping("/{id}")

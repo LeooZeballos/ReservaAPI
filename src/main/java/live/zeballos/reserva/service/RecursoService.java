@@ -1,6 +1,7 @@
 package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.Recurso;
+import live.zeballos.reserva.query.RecursoQueryParams;
 import live.zeballos.reserva.repository.RecursoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,8 +34,13 @@ public class RecursoService implements IRecursoService {
     }
 
     @Override
-    public List<Recurso> getByNombre(String nombre) {
-        return recursoRepository.findAllByNombreIgnoreCaseContains(nombre);
+    public Page<Recurso> getAll(Pageable page, String nombre) {
+        return recursoRepository.findByParams(
+                RecursoQueryParams.builder()
+                        .nombre(nombre)
+                        .build(),
+                page
+        );
     }
 
     @Override
