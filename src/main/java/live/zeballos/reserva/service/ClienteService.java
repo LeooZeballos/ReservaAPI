@@ -7,10 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import live.zeballos.reserva.repository.ClienteRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static live.zeballos.reserva.util.Parser.parseIdList;
 
 @Service
 public class ClienteService implements IClienteService {
@@ -64,16 +63,6 @@ public class ClienteService implements IClienteService {
     @Override
     public void delete(Long id) {
         clienteRepository.deleteById(id);
-    }
-
-    public List<Long> parseIdList(String ids) {
-        List<Long> idList = new ArrayList<>();
-        if (ids != null && !ids.isEmpty()) {
-            idList = Arrays.stream(ids.split(","))
-                    .map(Long::parseLong)
-                    .collect(Collectors.toList());
-        }
-        return idList;
     }
 
 }
