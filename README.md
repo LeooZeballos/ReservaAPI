@@ -15,6 +15,10 @@ Aplicación de Reservas para la cátedra 'Desarrollo de Aplicaciones Web' de la 
 Por defecto, la aplicación corre en el puerto 8080. Para cambiarlo, modificar el archivo `application.properties`.
 Además, todos los endpoints comienzan con `/api`, seguido de la versión de la API, que por defecto es `v1`.
 
+### Documentación
+
+- GET `/swagger-ui/index.html`: Documentación de la API generada con Swagger.
+
 ### Reserva
 
 - GET `/api/v1/reserva`: Devuelve todas las reservas.
