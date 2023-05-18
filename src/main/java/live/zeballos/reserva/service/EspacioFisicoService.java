@@ -30,11 +30,13 @@ public class EspacioFisicoService implements IEspacioFisicoService {
 
     @Override
     public Page<EspacioFisico> getAll(Pageable page, String nombre, Integer capacidad) {
-        EspacioFisicoQueryParams queryParams = EspacioFisicoQueryParams.builder()
-                .withNombre(nombre)
-                .withCapacidad(capacidad)
-                .build();
-        return espacioFisicoRepository.findByParams(queryParams, page);
+        return espacioFisicoRepository.findByParams(
+                EspacioFisicoQueryParams.builder()
+                        .nombre(nombre)
+                        .capacidad(capacidad)
+                        .build(),
+                page
+        );
     }
 
     @Override

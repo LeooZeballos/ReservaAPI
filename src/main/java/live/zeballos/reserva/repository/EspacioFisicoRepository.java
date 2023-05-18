@@ -17,11 +17,11 @@ public interface EspacioFisicoRepository extends JpaRepository<EspacioFisico, Lo
     default Page<EspacioFisico> findByParams(EspacioFisicoQueryParams queryParams, Pageable pageable) {
         return findAll((root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (queryParams.getNombre() != null) {
-                predicates.add(builder.like(builder.lower(root.get("nombre")), "%" + queryParams.getNombre().toLowerCase() + "%"));
+            if (queryParams.nombre() != null) {
+                predicates.add(builder.like(builder.lower(root.get("nombre")), "%" + queryParams.nombre().toLowerCase() + "%"));
             }
-            if (queryParams.getCapacidad() != null) {
-                predicates.add(builder.equal(root.get("capacidad"), queryParams.getCapacidad()));
+            if (queryParams.capacidad() != null) {
+                predicates.add(builder.equal(root.get("capacidad"), queryParams.capacidad()));
             }
             return builder.and(predicates.toArray(new Predicate[0]));
         }, pageable);
