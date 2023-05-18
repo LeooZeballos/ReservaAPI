@@ -2,10 +2,10 @@ package live.zeballos.reserva.service;
 
 import live.zeballos.reserva.model.Cliente;
 import live.zeballos.reserva.query.ClienteQueryParams;
+import live.zeballos.reserva.repository.ClienteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import live.zeballos.reserva.repository.ClienteRepository;
 
 import java.util.List;
 

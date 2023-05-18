@@ -9,8 +9,12 @@ public interface IService<T> {
     List<T> getAll();
 
     Page<T> getAll(Pageable page);
+
     T get(Long id);
+
     T create(T t);
+
     T update(Long id, T t);
+
     void delete(Long id);
 }
