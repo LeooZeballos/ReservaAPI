@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @Entity(name = "reserva")
 public class Reserva extends ObjetoDB {
 
-    @Column(name = "fecha_hora_reserva", nullable = false)
-    private LocalDateTime fechaHoraReserva;
+    @Column(name = "fecha_hora_inicio", nullable = false)
+    private LocalDateTime fechaHoraInicio;
 
     /**
      * The duration of the reservation in minutes
@@ -44,5 +44,9 @@ public class Reserva extends ObjetoDB {
 
     @ManyToOne
     private EspacioFisico espacioFisico;
+
+    public LocalDateTime getFechaHoraFin() {
+        return this.fechaHoraInicio.plusMinutes(this.duracion);
+    }
 
 }

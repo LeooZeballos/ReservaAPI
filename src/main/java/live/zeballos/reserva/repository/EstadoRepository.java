@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EstadoRepository extends JpaRepository<Estado, Long>, JpaSpecificationExecutor<Estado> {
@@ -29,4 +30,6 @@ public interface EstadoRepository extends JpaRepository<Estado, Long>, JpaSpecif
             return builder.and(estadoPredicates.toArray(new Predicate[0]));
         }, pageable);
     }
+
+    Optional<Estado> findByNombre(String nombre);
 }

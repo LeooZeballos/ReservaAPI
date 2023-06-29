@@ -41,5 +41,4 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long>, JpaSpec
             return builder.and(reservaPredicates.toArray(new Predicate[0]));
         }, pageable);
     }
-
 }

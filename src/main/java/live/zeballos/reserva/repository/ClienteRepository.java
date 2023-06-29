@@ -16,26 +16,26 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Long>, JpaSpecificationExecutor<Cliente> {
     default Page<Cliente> findByParams(ClienteQueryParams queryParams, Pageable pageable) {
         return findAll((root, query, builder) -> {
-            List<Predicate> clientePredicates = new ArrayList<>();
+            List<Predicate> predicates = new ArrayList<>();
             if (queryParams.nombre() != null) {
-                clientePredicates.add(builder.like(builder.lower(root.get("nombre")), "%" + queryParams.nombre().toLowerCase() + "%"));
+                predicates.add(builder.like(builder.lower(root.get("nombre")), "%" + queryParams.nombre().toLowerCase() + "%"));
             }
             if (queryParams.apellido() != null) {
-                clientePredicates.add(builder.like(builder.lower(root.get("apellido")), "%" + queryParams.apellido().toLowerCase() + "%"));
+                predicates.add(builder.like(builder.lower(root.get("apellido")), "%" + queryParams.apellido().toLowerCase() + "%"));
             }
             if (queryParams.nroTelefono() != null) {
-                clientePredicates.add(builder.like(builder.lower(root.get("nroTelefono")), "%" + queryParams.nroTelefono().toLowerCase() + "%"));
+                predicates.add(builder.like(builder.lower(root.get("nroTelefono")), "%" + queryParams.nroTelefono().toLowerCase() + "%"));
             }
             if (queryParams.email() != null) {
-                clientePredicates.add(builder.like(builder.lower(root.get("email")), "%" + queryParams.email().toLowerCase() + "%"));
+                predicates.add(builder.like(builder.lower(root.get("email")), "%" + queryParams.email().toLowerCase() + "%"));
             }
             if (queryParams.dni() != null) {
-                clientePredicates.add(builder.equal(root.get("dni"), queryParams.dni()));
+                predicates.add(builder.equal(root.get("dni"), queryParams.dni()));
             }
             if (queryParams.rolId() != null) {
-                clientePredicates.add(root.join("rol").get("id").in(queryParams.rolId()));
+                predicates.add(root.join("rol").get("id").in(queryParams.rolId()));
             }
-            return builder.and(clientePredicates.toArray(new Predicate[0]));
+            return builder.and(predicates.toArray(new Predicate[0]));
         }, pageable);
     }
 }

@@ -57,6 +57,7 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente update(Long id, Cliente cliente) {
+        cliente.setId(id);
         return clienteRepository.saveAndFlush(cliente);
     }
 

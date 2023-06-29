@@ -44,6 +44,10 @@ public class EstadoService implements IEstadoService {
         return estadoRepository.findById(id).orElse(null);
     }
 
+    public Estado get(String nombre) {
+        return estadoRepository.findByNombre(nombre).orElse(null);
+    }
+
     @Override
     public Estado create(Estado estado) {
         return estadoRepository.saveAndFlush(estado);
