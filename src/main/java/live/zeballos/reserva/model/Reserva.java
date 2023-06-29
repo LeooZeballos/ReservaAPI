@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -21,8 +22,8 @@ public class Reserva extends ObjetoDB {
     /**
      * The duration of the reservation in minutes
      */
-    @Column(name = "duracion", nullable = false)
-    private int duracion;
+    @Column(name = "fecha_hora_fin", nullable = false)
+    private LocalDateTime fechaHoraFin;
 
     @Column(name = "comentario", nullable = true)
     private String comentario;
@@ -45,8 +46,8 @@ public class Reserva extends ObjetoDB {
     @ManyToOne
     private EspacioFisico espacioFisico;
 
-    public LocalDateTime getFechaHoraFin() {
-        return this.fechaHoraInicio.plusMinutes(this.duracion);
+    public long getDuracion() {
+        return ChronoUnit.MINUTES.between(fechaHoraInicio, fechaHoraFin);
     }
 
 }

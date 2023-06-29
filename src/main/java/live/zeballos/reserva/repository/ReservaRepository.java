@@ -1,6 +1,7 @@
 package live.zeballos.reserva.repository;
 
 import jakarta.persistence.criteria.Predicate;
+import live.zeballos.reserva.model.EspacioFisico;
 import live.zeballos.reserva.model.Reserva;
 import live.zeballos.reserva.query.ReservaQueryParams;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,4 +43,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long>, JpaSpec
             return builder.and(reservaPredicates.toArray(new Predicate[0]));
         }, pageable);
     }
+
+    boolean existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqual(EspacioFisico espacioFisico, LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin);
 }

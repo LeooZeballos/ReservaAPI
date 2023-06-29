@@ -1,5 +1,7 @@
 package live.zeballos.reserva.service;
 
+import live.zeballos.reserva.error.ReservaAlreadyExistsException;
+import live.zeballos.reserva.model.EspacioFisico;
 import live.zeballos.reserva.model.Reserva;
 import live.zeballos.reserva.query.ReservaQueryParams;
 import live.zeballos.reserva.repository.ReservaRepository;
@@ -17,12 +19,12 @@ import static live.zeballos.reserva.util.Parser.parseIdList;
 @RequiredArgsConstructor
 public class ReservaService implements IReservaService {
 
-    private final ReservaRepository reservaRepository;
+    private final ReservaRepository repository;
     private final EstadoService estadoService;
 
     @Override
     public Page<Reserva> getAll(Pageable pageable, Integer duracion, String comentario, String clienteId, String motivoReserva, String estadoId, String motivoRechazo, String espacioFisicoId) {
-        return reservaRepository.findByParams(
+        return repository.findByParams(
                 ReservaQueryParams.builder()
                         .duracion(duracion)
                         .comentario(comentario)
@@ -38,46 +40,53 @@ public class ReservaService implements IReservaService {
 
     @Override
     public List<Reserva> getAll() {
-        return reservaRepository.findAll();
+        return repository.findAll();
     }
 
     @Override
     public Page<Reserva> getAll(Pageable page) {
-        return reservaRepository.findAll(page);
+        return repository.findAll(page);
     }
 
     @Override
     public Reserva get(Long id) {
-        return reservaRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Reserva create(Reserva reserva) {
-        // First, we check if there is another reserva on the same date and time
-        // if (!reservaRepository.existsOverlappingReserva(
-        //         reserva.getEspacioFisico(),
-        //         reserva.getFechaHoraFin(),
-        //         reserva.getFechaHoraInicio()
-        // )) {
-        //     throw new RuntimeException("Ya existe una reserva en el mismo espacio físico en el mismo horario");
-        // }
-
-        // Set the creation date and time and the state
+        checkOverlappingReserva(reserva);
         reserva.setFechaHoraCreacion(LocalDateTime.now());
         reserva.setEstado(estadoService.get("Creado"));
-
-        // Save the reserva and return it
-        return reservaRepository.saveAndFlush(reserva);
+        return repository.saveAndFlush(reserva);
     }
 
     @Override
     public Reserva update(Long id, Reserva reserva) {
+        checkOverlappingReserva(reserva);
         reserva.setId(id);
-        return reservaRepository.saveAndFlush(reserva);
+        return repository.saveAndFlush(reserva);
     }
 
     @Override
     public void delete(Long id) {
-        reservaRepository.deleteById(id);
+        repository.deleteById(id);
     }
+
+    private void checkOverlappingReserva(Reserva reserva) {
+        EspacioFisico espacioFisico = reserva.getEspacioFisico();
+        LocalDateTime fechaHoraFin = reserva.getFechaHoraFin();
+        LocalDateTime fechaHoraInicio = reserva.getFechaHoraInicio();
+
+        if (existsOverlappingReserva(espacioFisico, fechaHoraFin, fechaHoraInicio)) {
+            throw new ReservaAlreadyExistsException("Ya existe una reserva para el espacio físico " +
+                    espacioFisico.getNombre() + " en el horario " + fechaHoraInicio + " - " + fechaHoraFin);
+        }
+    }
+
+    private boolean existsOverlappingReserva(EspacioFisico espacioFisico, LocalDateTime fechaHoraFin, LocalDateTime fechaHoraInicio) {
+        return repository.existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqual(
+                espacioFisico, fechaHoraFin, fechaHoraInicio);
+    }
+
 }

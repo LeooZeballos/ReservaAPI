@@ -1,9 +1,11 @@
 package live.zeballos.reserva.controller;
 
+import live.zeballos.reserva.error.ReservaAlreadyExistsException;
 import live.zeballos.reserva.model.Reserva;
 import live.zeballos.reserva.service.IReservaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +40,13 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
-        return ResponseEntity.ok(reservaService.create(reserva));
+        try {
+            return ResponseEntity.ok(reservaService.create(reserva));
+        } catch (ReservaAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping("/{id}")
