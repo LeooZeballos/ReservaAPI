@@ -2,6 +2,7 @@ package live.zeballos.reserva.controller;
 
 import live.zeballos.reserva.model.Cliente;
 import live.zeballos.reserva.service.IClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/cliente")
+@RequiredArgsConstructor
 public class ClienteController {
 
     private final IClienteService clienteService;
-
-    public ClienteController(IClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
 
     @GetMapping
     public Page<Cliente> getAll(
