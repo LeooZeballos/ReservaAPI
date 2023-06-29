@@ -5,13 +5,10 @@ FROM openjdk:17-jdk
 WORKDIR /app
 
 # Copy the built JAR file to the container
-COPY target/Reserva-0.0.1-SNAPSHOT.jar app.jar
-
-# Copy the .env file to the container
-COPY .env .env
+COPY target/*.jar app.jar
 
 # Expose the port on which your Spring Boot application listens
 EXPOSE 8080
 
 # Define the command to run the application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=docker", "app.jar"]
