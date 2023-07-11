@@ -44,5 +44,5 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long>, JpaSpec
         }, pageable);
     }
 
-    boolean existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqual(EspacioFisico espacioFisico, LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin);
+    boolean existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqualAndIdNot(EspacioFisico espacioFisico, LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin, Long id);
 }

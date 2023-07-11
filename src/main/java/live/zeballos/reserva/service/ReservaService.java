@@ -77,16 +77,17 @@ public class ReservaService implements IReservaService {
         EspacioFisico espacioFisico = reserva.getEspacioFisico();
         LocalDateTime fechaHoraFin = reserva.getFechaHoraFin();
         LocalDateTime fechaHoraInicio = reserva.getFechaHoraInicio();
+        Long id = reserva.getId();
 
-        if (existsOverlappingReserva(espacioFisico, fechaHoraFin, fechaHoraInicio)) {
+        if (existsOverlappingReserva(espacioFisico, fechaHoraFin, fechaHoraInicio, id)) {
             throw new ReservaAlreadyExistsException("Ya existe una reserva para el espacio físico " +
                     espacioFisico.getNombre() + " en el horario " + fechaHoraInicio + " - " + fechaHoraFin);
         }
     }
 
-    private boolean existsOverlappingReserva(EspacioFisico espacioFisico, LocalDateTime fechaHoraFin, LocalDateTime fechaHoraInicio) {
-        return repository.existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqual(
-                espacioFisico, fechaHoraFin, fechaHoraInicio);
+    private boolean existsOverlappingReserva(EspacioFisico espacioFisico, LocalDateTime fechaHoraFin, LocalDateTime fechaHoraInicio, Long id) {
+        return repository.existsByEspacioFisicoAndFechaHoraFinGreaterThanEqualAndFechaHoraInicioLessThanEqualAndIdNot(
+                espacioFisico, fechaHoraFin, fechaHoraInicio, id);
     }
 
 }
